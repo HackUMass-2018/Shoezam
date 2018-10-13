@@ -1,3 +1,5 @@
+import random
+
 import tensorflow as tf
 from tensorflow import keras
 
@@ -5,7 +7,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 def save_arr(image):
-    image = [[[int(y * 255.0)] for y in x] for x in image]
+    image = [[[int((y * 255.0) + random.randint(0, 100))] for y in x] for x in image]
 
     str_t = tf.image.encode_jpeg(image, format='grayscale')
     with tf.Session():
