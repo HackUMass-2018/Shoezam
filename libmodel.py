@@ -3,6 +3,9 @@ import os
 import tensorflow as tf
 from tensorflow import keras
 
+class_names = ['T-shirt/top', 'Trouser', 'Pullover', 'Dress', 'Coat',
+               'Sandal', 'Shirt', 'Sneaker', 'Bag', 'Ankle boot']
+
 # Configuration
 checkpoint_path = "training_checkpoints/checkpoint.ckpt"
 checkpoint_dir = os.path.dirname(checkpoint_path)

@@ -7,6 +7,8 @@ name = "pypi"
 tensorflow = "*"
 matplotlib = "*"
 pillow = "*"
+pprint = "*"
+pypng = "*"
 
 [dev-packages]
 
