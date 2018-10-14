@@ -43,6 +43,7 @@ def apply_filters(images):
                      name='concat')
     """
     return tf.concat([edged, blured], 3)
+    #return tf.concat([edged, blured, hv_edged, diagonal_edged, cropped_images], 3)
 
 #image = load_test_image()
 
