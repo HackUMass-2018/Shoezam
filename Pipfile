@@ -4,7 +4,6 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-tensorflow = "*"
 matplotlib = "*"
 pillow = "*"
 pprint = "*"
@@ -13,6 +12,8 @@ numpy = "*"
 opencv-python = "*"
 opencv-contrib-python = "*"
 scipy = "*"
+tensorflow = "==1.8.0"
+tensorflow-gpu = "==1.8.0"
 
 [dev-packages]
 

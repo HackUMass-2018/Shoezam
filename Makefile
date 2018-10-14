@@ -1,4 +1,4 @@
-.PHONY: training-ssh docker-build docker-run
+.PHONY: training-ssh docker-build docker-run docker-notebook
 
 DOCKER_TAG=hackumass-2018/shoezam:latest
 
@@ -21,3 +21,14 @@ docker-run:
 		-v "${PWD}:/app" \
 		"${DOCKER_TAG}" \
 		/bin/bash
+
+# docker-notebook runs jupyter notebook
+docker-notebook:
+	docker run \
+		--net host \
+		-it \
+		--rm \
+		--runtime nvidia \
+		-v "${PWD}:/app" \
+		"${DOCKER_TAG}" \
+		jupyter notebook --allow-root
