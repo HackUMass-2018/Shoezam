@@ -1,4 +1,4 @@
-.PHONY: training-ssh docker-build docker-run docker-notebook
+.PHONY: training-ssh docker-build docker-run docker-notebook docker-web
 
 DOCKER_TAG=hackumass-2018/shoezam:latest
 
@@ -15,6 +15,7 @@ docker-build:
 # docker-run runs the docker tensorflow gpu docker image
 docker-run:
 	docker run \
+		--net host \
 		-it \
 		--rm \
 		--runtime nvidia \
