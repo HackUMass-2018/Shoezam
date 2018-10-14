@@ -6,7 +6,6 @@ import matplotlib.image as mpimg
 import pprint
 
 import libmodel
-import libimage
 
 import model_v2
 
