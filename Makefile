@@ -1,5 +1,6 @@
-.PHONY: training-ssh docker-build docker-run docker-notebook docker-web
+.PHONY: training-ssh docker-build docker-run docker-shell docker-notebook docker-web docker-train docker-predict
 
+MAKE=make
 DOCKER_TAG=hackumass-2018/shoezam:latest
 
 # training-ssh opens an ssh connection to the GCP training instance
@@ -12,8 +13,11 @@ docker-build:
 		-t "${DOCKER_TAG}" \
 		.
 
-# docker-run runs the docker tensorflow gpu docker image
+# docker-run runs a command in the docker tensorflow gpu docker container
+# args:
+#	- EXEC: command to execute
 docker-run:
+	if [ -z "${EXEC}" ]; then echo "EXEC argument must be provided"; exit 1; fi
 	docker run \
 		--net host \
 		-it \
@@ -21,15 +25,24 @@ docker-run:
 		--runtime nvidia \
 		-v "${PWD}:/app" \
 		"${DOCKER_TAG}" \
-		/bin/bash
+		${EXEC}
 
-# docker-notebook runs jupyter notebook
+# docker-shell starts a bash terminal in the docker container
+docker-shell:
+	${MAKE} docker-run EXEC="/bin/bash"
+
+# docker-notebook runs jupyter notebook in the docker container
 docker-notebook:
-	docker run \
-		--net host \
-		-it \
-		--rm \
-		--runtime nvidia \
-		-v "${PWD}:/app" \
-		"${DOCKER_TAG}" \
-		jupyter notebook --allow-root
+	${MAKE} docker-run EXEC="jupyter notebook"
+
+# docker-web starts the flask server in the docker container
+docker-web:
+	${MAKE} docker-run EXEC="\"/usr/local/bin/flask\" run -h 0.0.0.0"
+
+# docker-train trains the model in the docker container
+docker-train:
+	${MAKE} docker-run EXEC="./neural_network/train.py"
+
+# docker-predict runs the model prediction tests in the docker container
+docker-predict:
+	${MAKE} docker-run EXEC="./neural_network/predict.py"
