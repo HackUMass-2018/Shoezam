@@ -33,7 +33,7 @@ docker-shell:
 
 # docker-notebook runs jupyter notebook in the docker container
 docker-notebook:
-	${MAKE} docker-run EXEC="jupyter notebook"
+	${MAKE} docker-run EXEC="jupyter notebook --allow-root"
 
 # docker-web starts the flask server in the docker container
 docker-web:
