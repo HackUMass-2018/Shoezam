@@ -1,2 +1,6 @@
+# Jetbrains
 .idea
 *.imo
+
+# Python
+__pycache__/
