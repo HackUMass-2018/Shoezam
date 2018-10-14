@@ -1,1 +1,17 @@
-/* TODO make things not look like shit */
+* {
+    background: #c60975;
+}
+
+#form {
+    display: none;
+}
+
+#button {
+    font-family: sans-serif;
+    width: 100%;
+    height: 100%;
+    font-size: 160px;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+}
