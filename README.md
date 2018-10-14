@@ -10,6 +10,7 @@ Identify shoes by a picture.
 	- [Characteristics](#characteristics)
 	- [Classifications](#classifications)
 	- [Layers](#layers)
+- [Team](#team)
 
 # Overview
 Hack UMass project.  
@@ -104,3 +105,7 @@ The layers appear in the following order:
 	- Input shape: `(batch size, 128)`
 	- Output shape: `(batch size, 10)`
 	- Maps the result of the RELU layer to 10 nodes, 1 node for each classification an image can be, where the value of each node ends up being the probability that classification is present
+
+# Team
+The team was composed of Computer Science students from the University of Massachusetts.  
+Pair programming was heavily used to create the entire codebase, so code contribution statistics do not show the actual amount of work done per team member.
