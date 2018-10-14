@@ -40,18 +40,16 @@ def is_shoe(image_path):
 	# Predict
 	predictions = model.predict(image, steps=1)
 
-	max_p = 0
-	max_p_class = None
+	shoe_p = 0
+	shoe_classes = ['Sandal', 'Sneaker', 'Ankle boot']
 
 	for image_p in predictions:
 		i = 0
 		for w in image_p:
-			if w > max_p:
-				max_p = w
-				max_p_class = libmodel.class_names[i]
+			if libmodel.class_names[i] in shoe_classes:
+				shoe_p += w
 
 			print("{}: {}".format(libmodel.class_names[i], w))
 			i += 1
-	return max_p_class in ['Sandal', 'Sneaker', 'Ankle boot']
-
-print(is_shoe(IMAGE_PATH))
+	print(shoe_p)
+	return (shoe_p > .6) 
