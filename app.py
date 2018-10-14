@@ -1,12 +1,9 @@
 from flask import Flask, send_from_directory, request
-import random
-import uuid
 import tempfile
 
-import predict
+import neural_network.predict
 
 app = Flask(__name__)
-
 
 @app.route("/", methods=["GET", "POST"])
 def sendHomepage():
@@ -15,8 +12,6 @@ def sendHomepage():
 	elif request.method == "POST":
 		imagePath = tempfile.NamedTemporaryFile("w").name
 		request.files["image"].save(imagePath)
-
-		print(imagePath)
 		pred = predict.is_shoe(imagePath)
 		if pred:
 			return app.send_static_file("shoe.html")
