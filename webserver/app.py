@@ -3,7 +3,7 @@ import random
 import uuid
 import tempfile
 
-import predict_v12 as predict
+import predict
 
 app = Flask(__name__)
 
