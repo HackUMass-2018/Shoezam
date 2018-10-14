@@ -3,16 +3,8 @@ import sys
 import tensorflow as tf
 from tensorflow import keras
 import matplotlib.image as mpimg
-import pprint
 
-import libmodel
-
-import model_v2
-
-checkpoint_path = "training_checkpoints/checkpoint.ckpt"
-
-# Configuration
-IMAGE_PATH = "./predict-data/seetha.jpeg"
+import model
 
 # Prepare image
 def is_shoe(image_path):
@@ -30,10 +22,10 @@ def is_shoe(image_path):
 	image = image / 255.0
 
 	# Setup model
-	model = model_v2.create_model()
+	model = model.create_model()
 
 	# Load trained weights
-	model.load_weights(checkpoint_path)
+	model.load_weights(model.checkpoint_path)
 
 	#model.summary()
 
@@ -46,10 +38,10 @@ def is_shoe(image_path):
 	for image_p in predictions:
 		i = 0
 		for w in image_p:
-			if libmodel.class_names[i] in shoe_classes:
+			if model.class_names[i] in shoe_classes:
 				shoe_p += w
 
-			print("{}: {}".format(libmodel.class_names[i], w))
+			print("{}: {}".format(model.class_names[i], w))
 			i += 1
 	print(shoe_p)
 	return (shoe_p > .6) 

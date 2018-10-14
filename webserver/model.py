@@ -6,6 +6,10 @@ from matplotlib.pyplot import imshow
 
 from pprint import pprint
 
+# Configuration
+class_names = ['T-shirt/top', 'Trouser', 'Pullover', 'Dress', 'Coat',
+               'Sandal', 'Shirt', 'Sneaker', 'Bag', 'Ankle boot']
+
 checkpoint_path = "training_checkpoints/checkpoint.ckpt"
 
 def convolute(images, kernel):

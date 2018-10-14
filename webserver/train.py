@@ -4,11 +4,8 @@ import tensorflow as tf
 from tensorflow import keras
 import matplotlib.image as mpimg
 from matplotlib.pyplot import imshow
-import model_v2
+import model
 
-from pprint import pprint
-
-checkpoint_path = "training_checkpoints/checkpoint.ckpt"
 
 # Train
 # ... Load training set
@@ -22,10 +19,10 @@ with tf.Session():
     train_images = tf.expand_dims(train_images, 3).eval()
     test_images = tf.expand_dims(test_images, 3).eval()
 
-model = model_v2.create_model()
+model = model.create_model()
     
 # ... Make save weights
-checkpoint_callback = tf.keras.callbacks.ModelCheckpoint(checkpoint_path,
+checkpoint_callback = tf.keras.callbacks.ModelCheckpoint(model.checkpoint_path,
                              save_weights_only=True,
                              verbose=1,
                              period=1)
