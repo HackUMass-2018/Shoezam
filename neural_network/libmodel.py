@@ -1,4 +1,5 @@
 import sys
+import os
 import tensorflow as tf
 from tensorflow import keras
 import matplotlib.image as mpimg
@@ -9,8 +10,10 @@ from pprint import pprint
 # Configuration
 class_names = ['T-shirt/top', 'Trouser', 'Pullover', 'Dress', 'Coat',
                'Sandal', 'Shirt', 'Sneaker', 'Bag', 'Ankle boot']
+shoe_classes = ['Sandal', 'Sneaker', 'Ankle boot']
 
-checkpoint_path = "training_checkpoints/checkpoint.ckpt"
+__this_file_dir__ = os.path.dirname(os.path.realpath(__file__))
+checkpoint_path = os.path.abspath(os.path.join(__this_file_dir__, "../training_checkpoints/checkpoint.ckpt"))
 
 def convolute(images, kernel):
     kernel = tf.constant(kernel, dtype=tf.float32)
@@ -59,3 +62,11 @@ def create_model():
 	    keras.layers.Dense(10, activation=tf.nn.softmax),
 	])
 
+def load_trained_model():
+	# Setup model
+	model = create_model()
+
+	# Load trained weights
+	model.load_weights(checkpoint_path)
+
+	return model
