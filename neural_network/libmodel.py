@@ -70,3 +70,6 @@ def load_trained_model():
 	model.load_weights(checkpoint_path)
 
 	return model
+
+def create_graph():
+	return tf.Graph()

@@ -5,7 +5,10 @@ import neural_network.libmodel as libmodel
 import neural_network.predict as predict
 
 # Load trained model
-model = libmodel.load_trained_model()
+model_graph = libmodel.create_graph()
+
+with model_graph.as_default():
+	model = libmodel.load_trained_model()
 
 # Create flask app
 app = Flask(__name__)
@@ -21,7 +24,8 @@ def route_homepage():
 		request.files["image"].save(image_path)
 
 		# Run prediction
-		is_shoe = predict.is_shoe(model, image_path)
+		with model_graph.as_default():
+			is_shoe = predict.is_shoe(model, image_path)
 
 		# Return HTML page based on prediction result
 		if is_shoe:
