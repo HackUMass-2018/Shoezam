@@ -57,7 +57,7 @@ def apply_filters(images):
 def create_model():
 	return keras.Sequential([
 	    keras.layers.Lambda(apply_filters),
-	    keras.layers.Flatten(input_shape=(28, 28)),
+	    keras.layers.Flatten(input_shape=(26, 26, 2)),
 	    keras.layers.Dense(128, activation=tf.nn.relu),
 	    keras.layers.Dense(10, activation=tf.nn.softmax),
 	])
