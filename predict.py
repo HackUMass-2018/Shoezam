@@ -10,7 +10,7 @@ import libmodel
 import libimage
 
 # Configuration
-IMAGE_PATH = "./predict-data/seetha-white.jpeg"
+IMAGE_PATH = "./predict-data/seetha.jpeg"
 
 # Prepare image
 #image = mpimg.imread(IMAGE_PATH)
@@ -32,6 +32,7 @@ with tf.Session():
 image = [[(1 - y[0] / 255.0) for y in x] for x in image]
 
 libimage.save_arr(image)
+print("a")
 
 image = [[image]]
 

@@ -9,6 +9,10 @@ matplotlib = "*"
 pillow = "*"
 pprint = "*"
 pypng = "*"
+numpy = "*"
+opencv-python = "*"
+opencv-contrib-python = "*"
+scipy = "*"
 
 [dev-packages]
 
