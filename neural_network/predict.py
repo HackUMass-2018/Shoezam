@@ -4,7 +4,10 @@ import tensorflow as tf
 from tensorflow import keras
 import matplotlib.image as mpimg
 
-from . import libmodel
+try:
+	from . import libmodel
+except Exception:
+	import libmodel
 
 def is_shoe(model, image_path):
 	# Prepare image
@@ -36,7 +39,7 @@ def is_shoe(model, image_path):
 	predictions = model.predict(image, steps=1)
 
 	# ... Print prediction results
-	shoe_p = 0
+	max_shoe_p = 0
 	total_p = 0
 
 	# ... For each image in prediction results
@@ -46,8 +49,8 @@ def is_shoe(model, image_path):
 		for w in image_p:
 			total_p += w
 
-			if libmodel.class_names[i] in libmodel.shoe_classes:
-				shoe_p += w
+			if libmodel.class_names[i] in libmodel.shoe_classes and w > max_shoe_p:
+				max_shoe_p = w
 
 			print("{}: {}".format(libmodel.class_names[i], w))
 			i += 1
@@ -55,10 +58,10 @@ def is_shoe(model, image_path):
 	# ... Compute shoe cutoff based on total probability
 	shoe_cutoff = total_p * 0.6
 
-	print("Total shoe: {}".format(shoe_p))
+	print("Max shoe: {}".format(max_shoe_p))
 	print("Shoe cutoff: {}".format(shoe_cutoff))
 
-	return shoe_p > shoe_cutoff 
+	return max_shoe_p > shoe_cutoff 
 
 if __name__ == '__main__':
 	model = libmodel.load_trained_model()
