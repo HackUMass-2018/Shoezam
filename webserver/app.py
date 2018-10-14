@@ -3,6 +3,8 @@ import random
 import uuid
 import tempfile
 
+import predict_v12 as predict
+
 app = Flask(__name__)
 
 
@@ -13,9 +15,10 @@ def sendHomepage():
 	elif request.method == "POST":
 		imagePath = tempfile.NamedTemporaryFile("w").name
 		request.files["image"].save(imagePath)
-		# TODO determine if the image is a shoe
-		isShoe = random.randint(0, 1) == 1
-		if isShoe:
+
+		print(imagePath)
+		pred = predict.is_shoe(imagePath)
+		if pred:
 			return app.send_static_file("shoe.html")
 		else:
 			return app.send_static_file("notshoe.html")
