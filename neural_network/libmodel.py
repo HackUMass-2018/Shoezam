@@ -54,12 +54,20 @@ def apply_filters(images):
 
 #image = load_test_image()
 
+def apply_noise(images):
+	noise = tf.random_normal(shape=(28, 28, 1), mean=0.2, stddev=0.1)
+	return images + noise
+
 def create_model():
 	return keras.Sequential([
+	    keras.layers.Lambda(apply_noise, input_shape=(28, 28, 1)),
 	    keras.layers.Lambda(apply_filters),
-	    keras.layers.Flatten(input_shape=(26, 26, 2)),
+	    keras.layers.Flatten(),
 	    keras.layers.Dense(128, activation=tf.nn.relu),
-	    keras.layers.Dense(10, activation=tf.nn.softmax),
+            keras.layers.Dropout(0.5),
+	    keras.layers.Dense(128, activation=tf.nn.relu),
+            keras.layers.Dropout(0.5),
+	    keras.layers.Dense(10, activation=tf.nn.sigmoid),
 	])
 
 def load_trained_model():

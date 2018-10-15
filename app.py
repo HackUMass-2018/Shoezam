@@ -27,6 +27,8 @@ def route_homepage():
 		with model_graph.as_default():
 			is_shoe = predict.is_shoe(model, image_path)
 
+		print("Is shoe: {}".format(is_shoe))
+
 		# Return HTML page based on prediction result
 		if is_shoe:
 			return app.send_static_file("shoe.html")

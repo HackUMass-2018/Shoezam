@@ -25,7 +25,7 @@ model = libmodel.create_model()
 checkpoint_callback = tf.keras.callbacks.ModelCheckpoint(libmodel.checkpoint_path,
                              save_weights_only=True,
                              verbose=1,
-                             period=1)
+                             period=5)
 
 # ... Compile model
 model.compile(optimizer=tf.train.AdamOptimizer(),
@@ -33,7 +33,7 @@ model.compile(optimizer=tf.train.AdamOptimizer(),
           metrics=['accuracy'])
 
 # ... Fit model
-model.fit(train_images, train_labels, epochs=15, steps_per_epoch=10, callbacks=[checkpoint_callback])
+model.fit(train_images, train_labels, epochs=3, steps_per_epoch=200, callbacks=[checkpoint_callback])
 
 # ... Test model
 test_loss, test_acc = model.evaluate(test_images, test_labels)
