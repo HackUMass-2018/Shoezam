@@ -41,3 +41,4 @@ test_loss, test_acc = model.evaluate(test_images, test_labels)
 print("loss: {}, acc: {}".format(test_loss, test_acc))
 
 
+

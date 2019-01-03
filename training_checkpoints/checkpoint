@@ -1,2 +1,2 @@
-model_checkpoint_path: "/app/training_checkpoints/checkpoint.ckpt"
-all_model_checkpoint_paths: "/app/training_checkpoints/checkpoint.ckpt"
+model_checkpoint_path: "/home/noah/Documents/workspace/machine-learning/Shoezam/training_checkpoints/checkpoint.ckpt"
+all_model_checkpoint_paths: "/home/noah/Documents/workspace/machine-learning/Shoezam/training_checkpoints/checkpoint.ckpt"

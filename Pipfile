@@ -1,0 +1,17 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+tensorflow = "*"
+matplotlib = "*"
+google-cloud-storage = "*"
+
+[dev-packages]
+jupyter = "*"
+jupyterlab = "*"
+matplotlib = "*"
+
+[requires]
+python_version = "3.6"

@@ -22,8 +22,8 @@ def convolute(images, kernel):
     kernel = tf.expand_dims(kernel, 3)
 
     #images = tf.expand_dims(images, 0)
+    raise ValueError(images.shape)
     
-    #raise ValueError(images.shape, kernel.shape)
     processed = tf.nn.convolution(images, kernel, padding="VALID")
     processed = tf.clip_by_value(processed, 0, 255)
     
